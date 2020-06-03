@@ -30,27 +30,27 @@ resource "google_bigquery_dataset" "obd2info" {
     //  user_project_override = true
 
    /* access {
-        role = "projects/${var.gcloud_project}/roles/bigquery.admin"
+        role = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/roles/bigquery.admin"
         special_group = "projectOwners"
     }
 
     access {
-        role = "projects/${var.gcloud_project}/roles/bigquery.dataEditor"
+        role = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/roles/bigquery.dataEditor"
         special_group = "projectWriters"
     }
 
     access {
-        role = "projects/${var.gcloud_project}/roles/bigquery.dataViewer"
+        role = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/roles/bigquery.dataViewer"
         special_group = "projectReaders"
     }
 
     access {
-        role = "projects/${var.gcloud_project}/roles/bigquery.jobUser"
+        role = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/roles/bigquery.jobUser"
         special_group = "projectWriters"
     }
 
     access {
-        role = "projects/${var.gcloud_project}/bigquery.jobUser"
+        role = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/bigquery.jobUser"
         special_group = "projectReaders"
     }*/
 }
@@ -176,7 +176,7 @@ resource "google_cloudiot_registry" "iot_registry" {
     name = "obd2_devices"
 
     event_notification_configs {
-        pubsub_topic_name = "projects/${var.gcloud_project}/topics/obdii_data"
+        pubsub_topic_name = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/topics/obdii_data"
     }
     mqtt_config = {
         mqtt_enabled_state = "MQTT_ENABLED"
@@ -189,7 +189,7 @@ resource "google_cloudiot_registry" "iot_registry" {
 
 resource "google_storage_bucket" "dataflow_bucket" {
    
-  name = join("",["dataflow-", var.gcloud_project])
+  name = join("",["dataflow-", var.data.terraform_remote_state.project.outputs.short_project_id])
   location = "US"
 
 }
@@ -206,8 +206,8 @@ resource "google_dataflow_job" "collect_OBD2_data" {
   temp_gcs_location = "${google_storage_bucket.dataflow_bucket.url}/tmp_dir"
 
   parameters = {
-    inputSubscription = "projects/${var.gcloud_project}/subscriptions/${var.pub_sub_sub}"
-    outputTableSpec = "${var.gcloud_project}:${var.bq_table}"
+    inputSubscription = "projects/${var.data.terraform_remote_state.project.outputs.short_project_id}/subscriptions/${var.pub_sub_sub}"
+    outputTableSpec = "${var.data.terraform_remote_state.project.outputs.short_project_id}:${var.bq_table}"
     #flexRSGoal = "COST_OPTIMIZED"
   }
 }
