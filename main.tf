@@ -13,7 +13,7 @@ provider "google" {
   credentials = data.terraform_remote_state.project.service_account_token
   project     = data.terraform_remote_state.project.short_project_id
   region = var.region
-
+  zone = var.zone
 }
 
 # ****************************************************************************
@@ -153,7 +153,6 @@ resource "google_bigquery_table" "obd2logging" {
 
 resource "google_pubsub_topic" "pst_obdii_data" {
 
-    depends_on = [module.module-iot-gcp-proj]
     name = "obdii_data"
 }
 
@@ -173,7 +172,7 @@ resource "google_pubsub_subscription" "pst_obdii_data_sub" {
 
 resource "google_cloudiot_registry" "iot_registry" {
 
-    depends_on = [google_pubsub_topic.pst_obdii_data, module.module-iot-gcp-proj]
+    depends_on = [google_pubsub_topic.pst_obdii_data]
     name = "obd2_devices"
 
     event_notification_configs {
