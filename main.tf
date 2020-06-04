@@ -202,7 +202,6 @@ resource "google_storage_bucket" "dataflow_bucket" {
 resource "google_dataflow_job" "collect_OBD2_data" {
 
   name              = "OBD2-Data-Collection"
-  zone = var.zone
   template_gcs_path = "gs://dataflow-templates/latest/PubSub_Subscription_to_BigQuery"
   temp_gcs_location = "${google_storage_bucket.dataflow_bucket.url}/tmp_dir"
 
