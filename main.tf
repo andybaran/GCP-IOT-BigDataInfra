@@ -2,6 +2,7 @@ data "terraform_remote_state" "project" {
   backend = "remote"
 
   config = {
+    hostname = "app.terraform.io"
     organization = "akb-test"
     workspaces = {
       name = "GCP-IOT"
@@ -10,7 +11,7 @@ data "terraform_remote_state" "project" {
 }
 
 provider "google" {
-  credentials = data.terraform_remote_state.project.outputs.service_account_token
+  credentials = base64decode(data.terraform_remote_state.project.outputs.service_account_token)
   project     = data.terraform_remote_state.project.outputs.short_project_id
   region = var.region
   zone = var.zone
