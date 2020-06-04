@@ -208,7 +208,7 @@ resource "google_dataflow_job" "collect_OBD2_data" {
 
   parameters = {
     inputSubscription = "projects/${data.terraform_remote_state.project.outputs.short_project_id}/subscriptions/${var.pub_sub_sub}"
-    outputTableSpec = "${data.terraform_remote_state.project.outputs.short_project_id}:${bq_dataset}.${var.bq_table}"
+    outputTableSpec = "${data.terraform_remote_state.project.outputs.short_project_id}:${var.bq_dataset}.${var.bq_table}"
     #flexRSGoal = "COST_OPTIMIZED"
   }
 }
