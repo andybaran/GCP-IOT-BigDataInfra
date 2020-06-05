@@ -1,0 +1,5 @@
+region= "us-central1"	
+zone= "us-central1-f"	
+bq_dataset="eyeooohhhtee"	
+bq_table="zoomzoom"	
+pub_sub_sub="pubasubsub"
