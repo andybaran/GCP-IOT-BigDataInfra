@@ -22,7 +22,7 @@ variable "bq-cluster-usage-dataset" {
   description = "GCP dataset for cluster usage data"
 }
 
-variable "oranization-name" {
+variable "organization-name" {
   description = "TFE Organization name"
 }
 
