@@ -3,9 +3,9 @@ data "terraform_remote_state" "project" {
 
   config = {
     hostname = "app.terraform.io"
-    organization = "akb-test"
+    organization = var.organization-name
     workspaces = {
-      name = "GCP-IOT"
+      name = var.workspace-name
     }
   }
 }
