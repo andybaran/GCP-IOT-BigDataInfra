@@ -35,6 +35,64 @@ module "module-gke" {
 }
 
 # ****************************************************************************
+# Consul  
+# ****************************************************************************
+
+resource "helm_release" "helm_consul" {
+
+  name = "consul"
+  repository = "https://helm.releases.hashicorp.com"
+  chart = "hashicorp/consul-enterprise"
+  version = "1.7.3-ent"
+
+  set {
+    name = "server.replicas"
+    value = 3
+  }
+
+  set {
+    name = "server.bootstrapExpect"
+    value = 3
+  }
+  
+  set {
+    name = "ui.service.type"
+    value = "LoadBalancer"
+  }
+
+  set {
+    name = "server.enterpriseLicense.secretName"
+    value = "consul-license"
+  }
+
+  set {
+    name = "server.enterpriseLicense.secretKey"
+    value = "key"
+  }
+
+  set {
+    name = "server.connect"
+    value = true
+  }
+
+  set {
+    name = "client.grpc"
+    value = true
+  }
+
+  set {
+    name = "connectInject.enabled"
+    value = true
+  }
+
+  set {
+    name = "connectInject.default"
+    value = false
+  }
+
+}
+
+# ****************************************************************************
 # BigQuery
 # ****************************************************************************
 
