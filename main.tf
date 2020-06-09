@@ -17,23 +17,6 @@ provider "google" {
   zone = var.zone
 }
 
-# ****************************************************************************
-# GKE via module
-# ****************************************************************************
-
-module "module-gke" {
-  source  = "app.terraform.io/akb-test/module-gke/gcp"
-  region = var.region
-  zone = var.zone
-  bq-cluster-usage-dataset = var.bq-cluster-usage-dataset
-  organization-name = var.organization-name
-  primary-cluster = var.primary-cluster
-  primary-node-count = var.primary-node-count
-  primary-node-machine-type = var.primary-node-machine-type
-  primary-node-pool = var.primary-node-pool
-  workspace-name = var.workspace-name
-}
-
 
 # ****************************************************************************
 # BigQuery
