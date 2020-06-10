@@ -11,4 +11,3 @@ primary-node-pool="pool01"
 bq-cluster-usage-dataset="clusterdata"
 organization-name="akb-test"
 workspace-name="BigDataProject"
-
