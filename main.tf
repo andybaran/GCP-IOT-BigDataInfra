@@ -150,6 +150,22 @@ resource "google_bigquery_table" "obd2logging" {
 }
 
 # ****************************************************************************
+# Create a GKE cluster
+# ****************************************************************************
+module "module-gke" {
+  source = "app.terraform.io/akb-test/module-gke/gcp"
+  creds = base64decode(data.terraform_remote_state.project.outputs.service_account_token)
+  gcloud_project = data.terraform_remote_state.project.outputs.short_project_id
+  region = var.region
+  zone = var.zone
+  bq-cluster-usage-dataset = var.bq-cluster-usage-dataset
+  primary-cluster = var.primary-cluster
+  primary-node-count = var.primary-node-count
+  primary-node-machine-type = var.primary-node-machine-type
+  primary-node-pool = var.primary-node-pool
+}
+
+# ****************************************************************************
 # PubSub
 # ****************************************************************************
 

@@ -1,3 +1,11 @@
+variable "organization-name" {
+  description = "TFE Organization name"
+}
+
+variable "workspace-name" {
+  description = "TFE workspace name where project was created"
+}
+
 variable "region" {
   description = "GCP region"
 }
@@ -22,10 +30,6 @@ variable "bq-cluster-usage-dataset" {
   description = "GCP dataset for cluster usage data"
 }
 
-variable "organization-name" {
-  description = "TFE Organization name"
-}
-
 variable "primary-cluster" {
   description = "Primary GKE cluster"
 }
@@ -40,8 +44,4 @@ variable "primary-node-machine-type" {
 
 variable "primary-node-pool" {
   description = "gke primary node pool"
-}
-
-variable "workspace-name" {
-  description = "TFE workspace name where project was created"
 }
