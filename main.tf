@@ -154,6 +154,8 @@ resource "google_bigquery_table" "obd2logging" {
 # ****************************************************************************
 module "module-gke" {
   source = "app.terraform.io/akb-test/module-gke/gcp"
+  organization = var.organization
+  workspace = var.workspace
   creds = base64decode(data.terraform_remote_state.project.outputs.service_account_token)
   gcloud_project = data.terraform_remote_state.project.outputs.short_project_id
   region = var.region
