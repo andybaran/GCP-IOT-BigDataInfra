@@ -19,7 +19,7 @@ output "gke_endpoint" {
 }
 
 output "cluster_name" {
-  value = module.module-gke.primary_name
+  value = module.module-gke.cluster_name
   description = "The name of the cluster."
 }
 
@@ -34,6 +34,6 @@ output "region" {
 }
 
 output "gcloud_project" {
-  value = var.region
+  value = data.terraform_remote_state.project.outputs.short_project_id
   description = "GCP project the cluser is in."
 }
