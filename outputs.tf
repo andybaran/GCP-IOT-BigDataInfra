@@ -17,3 +17,23 @@ output "gke_endpoint" {
   value = module.module-gke.gke_endpoint
   description = "The IP address of this cluster's Kubernetes master."
 }
+
+output "cluster_name" {
+  value = module.module-gke.primary_name
+  description = "The name of the cluster."
+}
+
+output "zone" {
+  value = var.zone
+  description = "GCP Zone the cluster is in."
+}
+
+output "region" {
+  value = var.region
+  description = "GCP Region the cluster is in."
+}
+
+output "gcloud_project" {
+  value = var.region
+  description = "GCP project the cluser is in."
+}
