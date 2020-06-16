@@ -191,7 +191,7 @@ resource "kubernetes_secret" "consulLicense" {
     entKey = var.consul-enterprise-key
   }
 
-  type = "kubernetes.io/basic-auth"
+  type = "Opaque"
 }
 
 # ****************************************************************************
