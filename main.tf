@@ -208,6 +208,7 @@ provider "helm" {
   cluster_ca_certificate = base64decode(
     module.module-gke.cluster_ca_certificate,
   )
+  }
 }
 
 resource "helm_release" "helm_consul" {
