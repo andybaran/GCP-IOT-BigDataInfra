@@ -219,6 +219,11 @@ resource "helm_release" "helm_consul" {
   repository = "https://helm.releases.hashicorp.com"
   chart = "consul"
 
+  timeouts = {
+    create = "60m"
+    delete = "2h"
+  }
+
   set {
     name = "server.replicas"
     value = 3
