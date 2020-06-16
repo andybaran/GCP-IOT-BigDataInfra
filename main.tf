@@ -196,6 +196,65 @@ resource "kubernetes_secret" "example" {
 }
 
 # ****************************************************************************
+# Consul via Helm
+# ****************************************************************************
+
+resource "helm_release" "helm_consul" {
+
+  depends_on = [kubernetes_secret.example]
+
+  name = "consul"
+  repository = "https://helm.releases.hashicorp.com"
+  chart = "consul"
+
+  set {
+    name = "server.replicas"
+    value = 3
+  }
+
+  set {
+    name = "server.bootstrapExpect"
+    value = 3
+  }
+  
+  set {
+    name = "ui.service.type"
+    value = "LoadBalancer"
+  }
+
+  set {
+    name = "server.enterpriseLicense.secretName"
+    value = "consullicense"
+  }
+
+  set {
+    name = "server.enterpriseLicense.secretKey"
+    value = "key"
+  }
+
+  set {
+    name = "server.connect"
+    value = true
+  }
+
+  set {
+    name = "client.grpc"
+    value = true
+  }
+
+  set {
+    name = "connectInject.enabled"
+    value = true
+  }
+
+  set {
+    name = "connectInject.default"
+    value = false
+  }
+
+}
+
+# ****************************************************************************
 # PubSub
 # ****************************************************************************
 
