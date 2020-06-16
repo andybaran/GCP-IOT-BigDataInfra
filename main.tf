@@ -246,7 +246,7 @@ resource "google_storage_bucket" "dataflow_bucket" {
 # Dataflow
 # ****************************************************************************
 
-resource "google_dataflow_job" "collect_OBD2_data" {
+/* resource "google_dataflow_job" "collect_OBD2_data" {
 
   name              = "OBD2-Data-Collection"
   template_gcs_path = "gs://dataflow-templates/latest/PubSub_Subscription_to_BigQuery"
@@ -258,4 +258,4 @@ resource "google_dataflow_job" "collect_OBD2_data" {
     outputTableSpec = "${data.terraform_remote_state.project.outputs.short_project_id}:${var.bq_dataset}.${var.bq_table}"
     #flexRSGoal = "COST_OPTIMIZED"
   }
-}
+} */
