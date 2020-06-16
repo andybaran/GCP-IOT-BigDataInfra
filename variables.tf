@@ -45,3 +45,7 @@ variable "primary-node-machine-type" {
 variable "primary-node-pool" {
   description = "gke primary node pool"
 }
+
+variable "consul-enterprise-key" {
+  description = "Consul enterprise licensing"
+}

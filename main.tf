@@ -182,14 +182,13 @@ provider "kubernetes" {
   )
 }
 
-resource "kubernetes_secret" "example" {
+resource "kubernetes_secret" "consulLicense" {
    metadata {
-    name = "basic-auth"
+    name = "consul-license"
   }
 
   data = {
-    username = "admin"
-    password = "P4ssw0rd"
+    entKey = var.consul-enterprise-key
   }
 
   type = "kubernetes.io/basic-auth"
@@ -239,12 +238,12 @@ resource "helm_release" "helm_consul" {
   }
 
   set {
-    name = "server.enterpriseLicense.secretName"
+    name = "server.enterpriseLicense.consulLicense"
     value = "consullicense"
   }
 
   set {
-    name = "server.enterpriseLicense.secretKey"
+    name = "server.enterpriseLicense.entKey"
     value = "key"
   }
 
