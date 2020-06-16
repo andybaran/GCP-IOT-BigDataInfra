@@ -150,8 +150,10 @@ resource "google_bigquery_table" "obd2logging" {
 }
 
 # ****************************************************************************
-# Create a GKE cluster
+# Kubernetes
 # ****************************************************************************
+
+
 module "module-gke" {
   source = "app.terraform.io/akb-test/module-gke/gcp"
   organization-name = var.organization-name
@@ -165,6 +167,32 @@ module "module-gke" {
   primary-node-count = var.primary-node-count
   primary-node-machine-type = var.primary-node-machine-type
   primary-node-pool = var.primary-node-pool
+}
+
+data "google_client_config" "provider" {}
+
+
+provider "kubernetes" {
+  load_config_file = false
+
+  host  = "https://${module.gke_cluster.gke_endpoint}"
+  token = data.google_client_config.provider.access_token
+  cluster_ca_certificate = base64decode(
+    data.google_container_cluster.my_cluster.master_auth[0].cluster_ca_certificate,
+  )
+}
+
+resource "kubernetes_secret" "example" {
+   metadata {
+    name = "basic-auth"
+  }
+
+  data = {
+    username = "admin"
+    password = "P4ssw0rd"
+  }
+
+  type = "kubernetes.io/basic-auth"
 }
 
 # ****************************************************************************
