@@ -219,10 +219,9 @@ resource "helm_release" "helm_consul" {
   repository = "https://helm.releases.hashicorp.com"
   chart = "consul"
 
-  timeouts = {
-    create = "60m"
-    delete = "2h"
-  }
+  lint = true
+  timeout = 600
+  atomic = true
 
   set {
     name = "server.replicas"
