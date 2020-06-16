@@ -212,7 +212,7 @@ provider "helm" {
 
 resource "helm_release" "helm_consul" {
 
-  depends_on = [kubernetes_secret.example]
+  depends_on = [kubernetes_secret.consulLicense]
 
   name = "consul"
   repository = "https://helm.releases.hashicorp.com"
