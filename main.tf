@@ -220,7 +220,8 @@ resource "helm_release" "helm_consul" {
 
   lint = true
   timeout = 1200
-  atomic = true
+  atomic = false
+
 
   set {
     name = "server.replicas"
