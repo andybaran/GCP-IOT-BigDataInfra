@@ -219,7 +219,7 @@ resource "helm_release" "helm_consul" {
   chart = "consul"
 
   lint = true
-  timeout = 600
+  timeout = 1200
   atomic = true
 
   set {
