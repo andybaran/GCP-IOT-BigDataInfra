@@ -217,7 +217,7 @@ resource "helm_release" "helm_consul" {
   name = "consul"
   repository = "https://helm.releases.hashicorp.com"
   chart = "consul"
-  version = "0.2.0"
+  version = "0.20.1"
 
   lint = true
   timeout = 600
