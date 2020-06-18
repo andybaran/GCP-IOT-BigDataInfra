@@ -56,6 +56,7 @@ output "helm_chart_revision" {
 
 output "helm_chart_status" {
   value = helm_release.helm_consul.metadata.status
+}
 
 output "helm_chart_version" {
   value = helm_release.helm_consul.metadata.version

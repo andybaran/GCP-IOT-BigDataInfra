@@ -269,6 +269,11 @@ resource "helm_release" "helm_consul" {
     value = false
   }
 
+  set {
+    name = "affinity"
+    value = false
+  }
+
 }
 
 # ****************************************************************************
