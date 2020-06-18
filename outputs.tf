@@ -37,3 +37,30 @@ output "gcloud_project" {
   value = data.terraform_remote_state.project.outputs.short_project_id
   description = "GCP project the cluser is in."
 }
+
+output "helm_chart_chart" {
+  value = helm_release.helm_consul.metadata.chart
+}
+
+output "helm_chart_name" {
+  value = helm_release.helm_consul.metadata.name
+}
+
+output "helm_chart_namespace" {
+  value = helm_release.helm_consul.metadata.namespace
+}
+
+output "helm_chart_revision" {
+  value = helm_release.helm_consul.metadata.revision
+}
+
+output "helm_chart_status" {
+  value = helm_release.helm_consul.metadata.status
+
+output "helm_chart_version" {
+  value = helm_release.helm_consul.metadata.version
+}
+
+output "helm_chart_values" {
+  value = helm_release.helm_consul.metadata.values
+}
