@@ -39,10 +39,10 @@ output "gcloud_project" {
 }
 
 output "helm_chart_chart" {
-  value = helm_release.helm_consul.metadata.chart
+  value = helm_release.helm_consul.metadata
 }
 
-output "helm_chart_name" {
+/* output "helm_chart_name" {
   value = helm_release.helm_consul.metadata.name
 }
 
@@ -64,4 +64,4 @@ output "helm_chart_version" {
 
 output "helm_chart_values" {
   value = helm_release.helm_consul.metadata.values
-}
+} */
